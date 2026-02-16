@@ -1,0 +1,6 @@
+services:
+  myfirstapp:
+    image: python:3.14
+    command: python -m http.server 8000
+    ports:
+      - 3000:8000
