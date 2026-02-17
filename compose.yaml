@@ -6,3 +6,5 @@ services:
     command: python -m http.server 8000
     ports:
       - 3000:8000
+    volumes:
+      - ./static_files/src:/app
