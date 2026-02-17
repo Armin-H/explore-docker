@@ -1,6 +1,7 @@
 services:
-  myfirstapp:
+  static_html:
     build:
+      context: ./static_files
       dockerfile: Dockerfile
     command: python -m http.server 8000
     ports:
