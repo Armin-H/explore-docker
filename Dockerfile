@@ -5,7 +5,8 @@ FROM python:3.14
 # docker run -it myfirstapp
 
 WORKDIR /app
-RUN echo "Hello World" > index.html
+# RUN mkdir -p /static_files
+COPY ./static_files .  # destination is /app
 
 # docker run -it -p 3000:8000 myfirstapp
 CMD ["python", "-m", "http.server", "8000"]
