@@ -11,6 +11,7 @@ services:
     command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
     env_file:
       - .env.sample
+      - .env.sample-db
     develop:
       watch:
         - action: rebuild
@@ -19,12 +20,20 @@ services:
           path: ./backend/Dockerfile
         - action: restart
           path: ./backend/src
-  static_html:
-    build:
-      context: ./static_files
-      dockerfile: Dockerfile
-    command: python -m http.server 8000
+
+  db_service:
+    image: postgres:latest
     ports:
-      - 3000:8000
-    volumes:
-      - ./static_files/src:/app
+      - 5432:5432
+    env_file:
+      - .env.sample-db
+
+  # static_html:
+  #   build:
+  #     context: ./static_files
+  #     dockerfile: Dockerfile
+  #   command: python -m http.server 8000
+  #   ports:
+  #     - 3000:8000
+  #   volumes:
+  #     - ./static_files/src:/app
